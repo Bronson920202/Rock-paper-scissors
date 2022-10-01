@@ -1,15 +1,32 @@
+var playersChoiceToInt;
+var AICoice;
 var playerScore = 0;
 var computerScore = 0;
 
-for (let index = 1; index <= 5; index++) {
-    var yourChoice = getPlayersChoice();
-    var AICoice = getComputersChoice();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
 
+
+
+rock.addEventListener('click',() => {
+    getRockChoice();
+    getComputersChoice();
     compareChoices();
-    
-}
-
-compareScore();
+    // compareScore();
+} );
+paper.addEventListener('click',() => {
+    getPaperChoice();
+    getComputersChoice();
+    compareChoices();
+    // compareScore();
+} );
+scissor.addEventListener('click',() => {
+    getScissorChoice();
+    getComputersChoice();
+    compareChoices();
+    // compareScore();
+} );
 
 
 //Make function to get computers random choice
@@ -32,44 +49,33 @@ function getComputersChoice(computersChoice) {
         console.log("computer: scissor");
     }
 
-    return roundChoice;
+    AICoice = roundChoice;
+    return AICoice;
 }
 
 //Make fucntion to get players choice
 
-function getPlayersChoice() {
-    let playerChoice = prompt("rock, paper or scissor?");
-    let playersChoiceToInt;
-
-    if (playerChoice === "rock") {
-        playersChoiceToInt = 1;
-        console.log("you: rock");
-        return playersChoiceToInt;
-    }
-    if (playerChoice === "paper") {
-        playersChoiceToInt = 2;
-        console.log("you: paper");
-        return playersChoiceToInt;
-    }
-    if (playerChoice === "scissor") {
-        playersChoiceToInt = 3;
-        console.log("you: scissor");
-        return playersChoiceToInt;
-    }
-    else {
-        console.log("Must pick one of the options: rock, paper, scissor!")
-        return
-    }
+function getRockChoice() {  
+    console.log("you: rock");
+    return playersChoiceToInt = 1;
+}
+function getPaperChoice(){
+    console.log("you: paper");
+    return playersChoiceToInt = 2;
+}
+function getScissorChoice(){
+    console.log("you: scissor");
+    return playersChoiceToInt = 3;
 }
 // Compare choices
 function compareChoices() {
-    if (yourChoice == AICoice) {
+    if (playersChoiceToInt == AICoice) {
         playerScore++;
         computerScore++;
         console.log("It's a draw!")
     }
-    if(yourChoice > AICoice){
-        if (AICoice == 1){
+    if (playersChoiceToInt > AICoice) {
+        if (AICoice == 1) {
             computerScore++;
             console.log("you loose!")
         }
@@ -77,10 +83,10 @@ function compareChoices() {
             playerScore++;
             console.log("you win!")
         }
-        
+
     }
-    if(yourChoice < AICoice){
-        if (AICoice == 3){
+    if (playersChoiceToInt < AICoice) {
+        if (AICoice == 3) {
             playerScore++;
             console.log("you win!")
         }
@@ -88,20 +94,20 @@ function compareChoices() {
             computerScore++;
             console.log("you loose!")
         }
-        
+
     }
-    
+
 }
 
 //compare score
-function compareScore(){
-    if (playerScore > computerScore){
+function compareScore() {
+    if (playerScore > computerScore) {
         console.log("You win the game!")
     }
-    if (playerScore < computerScore){
+    if (playerScore < computerScore) {
         console.log("You loose the game!")
     }
-    if (playerScore == computerScore){
+    if (playerScore == computerScore) {
         console.log("The game is draw!")
     }
 
