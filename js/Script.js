@@ -9,16 +9,19 @@ const scissor = document.querySelector('#scissor');
 
 
 
+
 rock.addEventListener('click',() => {
     getRockChoice();
     getComputersChoice();
     compareChoices();
+    createVisualResualt();
     // compareScore();
 } );
 paper.addEventListener('click',() => {
     getPaperChoice();
     getComputersChoice();
     compareChoices();
+    createVisualResualt();
     // compareScore();
 } );
 scissor.addEventListener('click',() => {
@@ -28,6 +31,8 @@ scissor.addEventListener('click',() => {
     createVisualResualt();
     // compareScore();
 } );
+
+
 
 
 //Make function to get computers random choice
@@ -102,8 +107,13 @@ function compareChoices() {
 }
 
 function createVisualResualt(){
-    const resualt = document.createElement("p");
-    resualt.append()
+    const resualtTextDiv = document.querySelector('#displayResualt');
+
+    const createResualtParagraph = document.createElement('p');   
+    resualtTextDiv.appendChild(createResualtParagraph);
+
+    createResualtParagraph.textContent = "hello";   
+    
 }
 
 //compare score
