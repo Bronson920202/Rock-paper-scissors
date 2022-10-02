@@ -10,27 +10,27 @@ const scissor = document.querySelector('#scissor');
 
 
 
-rock.addEventListener('click',() => {
+rock.addEventListener('click', () => {
     getRockChoice();
     getComputersChoice();
     compareChoices();
-    createVisualResualt();
+    createVisualResualt(playersChoiceToInt);
     // compareScore();
-} );
-paper.addEventListener('click',() => {
+});
+paper.addEventListener('click', () => {
     getPaperChoice();
     getComputersChoice();
     compareChoices();
-    createVisualResualt();
+    createVisualResualt(playersChoiceToInt);
     // compareScore();
-} );
-scissor.addEventListener('click',() => {
+});
+scissor.addEventListener('click', () => {
     getScissorChoice();
     getComputersChoice();
     compareChoices();
-    createVisualResualt();
+    createVisualResualt(playersChoiceToInt);
     // compareScore();
-} );
+});
 
 
 
@@ -61,15 +61,15 @@ function getComputersChoice(computersChoice) {
 
 //Make fucntion to get players choice
 
-function getRockChoice() {  
+function getRockChoice() {
     console.log("you: rock");
     return playersChoiceToInt = 1;
 }
-function getPaperChoice(){
+function getPaperChoice() {
     console.log("you: paper");
     return playersChoiceToInt = 2;
 }
-function getScissorChoice(){
+function getScissorChoice() {
     console.log("you: scissor");
     return playersChoiceToInt = 3;
 }
@@ -79,7 +79,7 @@ function compareChoices() {
         playerScore++;
         computerScore++;
         console.log("It's a draw!")
-        console.log(playersChoiceToInt,AICoice);
+        console.log(playersChoiceToInt, AICoice);
     }
     if (playersChoiceToInt > AICoice) {
         if (playersChoiceToInt === 3 && AICoice === 1) {
@@ -90,7 +90,7 @@ function compareChoices() {
             playerScore++;
             console.log("you win!")
         }
-        console.log(playersChoiceToInt,AICoice);
+        console.log(playersChoiceToInt, AICoice);
     }
     if (playersChoiceToInt < AICoice) {
         if (playersChoiceToInt === 1 && AICoice === 3) {
@@ -101,19 +101,31 @@ function compareChoices() {
             computerScore++;
             console.log("you loose!")
         }
-        console.log(playersChoiceToInt,AICoice);
+        console.log(playersChoiceToInt, AICoice);
     }
 
 }
 
-function createVisualResualt(){
+function createVisualResualt(choiceInNumber) {
     const resualtTextDiv = document.querySelector('#displayResualt');
 
-    const createResualtParagraph = document.createElement('p');   
+    const createResualtParagraph = document.createElement('p');
     resualtTextDiv.appendChild(createResualtParagraph);
 
-    createResualtParagraph.textContent = "hello";   
-    
+    const choiceText = ["Rock", "Paper", "Scissor"];
+
+
+    if (choiceInNumber === 1) {
+        createResualtParagraph.textContent = "your choice: " + choiceText[0];
+    }
+    else if (choiceInNumber === 2) {
+        createResualtParagraph.textContent = "your choice: " + choiceText[1];
+    }
+    else {
+        createResualtParagraph.textContent = "your choice: " + choiceText[2];
+    }
+
+
 }
 
 //compare score
