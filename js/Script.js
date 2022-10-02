@@ -25,6 +25,7 @@ scissor.addEventListener('click',() => {
     getScissorChoice();
     getComputersChoice();
     compareChoices();
+    createVisualResualt();
     // compareScore();
 } );
 
@@ -73,9 +74,10 @@ function compareChoices() {
         playerScore++;
         computerScore++;
         console.log("It's a draw!")
+        console.log(playersChoiceToInt,AICoice);
     }
     if (playersChoiceToInt > AICoice) {
-        if (AICoice == 1) {
+        if (playersChoiceToInt === 3 && AICoice === 1) {
             computerScore++;
             console.log("you loose!")
         }
@@ -83,10 +85,10 @@ function compareChoices() {
             playerScore++;
             console.log("you win!")
         }
-
+        console.log(playersChoiceToInt,AICoice);
     }
     if (playersChoiceToInt < AICoice) {
-        if (AICoice == 3) {
+        if (playersChoiceToInt === 1 && AICoice === 3) {
             playerScore++;
             console.log("you win!")
         }
@@ -94,9 +96,14 @@ function compareChoices() {
             computerScore++;
             console.log("you loose!")
         }
-
+        console.log(playersChoiceToInt,AICoice);
     }
 
+}
+
+function createVisualResualt(){
+    const resualt = document.createElement("p");
+    resualt.append()
 }
 
 //compare score
