@@ -1,7 +1,10 @@
+let roundsToPlay = 5;
+let roundsPlayed = 0;
 var playersChoiceToInt;
 var AICoice;
 var playerScore = 0;
 var computerScore = 0;
+var classNameCounter = 0;
 
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
@@ -11,31 +14,38 @@ const resualtTextDiv = document.querySelector('#displayResualt');
 
 
 
-
 rock.addEventListener('click', () => {
+    if(roundsPlayed === roundsToPlay) return compareScore();
     getRockChoice();
     getComputersChoice();
     createVisualChoice("Your choice: ", playersChoiceToInt);
     createVisualChoice("Computers choice: ", AICoice);
     createVisualResault(playersChoiceToInt, AICoice);
+    roundsPlayed++;
     // compareScore();
 });
 paper.addEventListener('click', () => {
+    if(roundsPlayed === roundsToPlay) return compareScore();
     getPaperChoice();
     getComputersChoice();
     createVisualChoice("Your choice: ", playersChoiceToInt);
     createVisualChoice("Computers choice: ", AICoice);
     createVisualResault(playersChoiceToInt, AICoice);
+    roundsPlayed++;
     // compareScore();
 });
 scissor.addEventListener('click', () => {
+    if(roundsPlayed === roundsToPlay) return compareScore();
     getScissorChoice();
     getComputersChoice();
     createVisualChoice("Your choice: ", playersChoiceToInt);
     createVisualChoice("Computers choice: ", AICoice);
     createVisualResault(playersChoiceToInt, AICoice);
+    roundsPlayed++;
     // compareScore();
 });
+
+
 
 
 
@@ -71,6 +81,13 @@ function createVisualChoice(string, choiceInNumber) {
 
     const createChoiceParagraph = document.createElement('p');
     resualtTextDiv.appendChild(createChoiceParagraph);
+    if(classNameCounter % 2 === 0){
+        createChoiceParagraph.className ="playerChoice";
+    }
+    else if(classNameCounter % 2 === 1){
+        createChoiceParagraph.className ="computerChoice";
+    }
+    
 
     const choiceText = ["Rock", "Paper", "Scissor"];
 
@@ -83,11 +100,13 @@ function createVisualChoice(string, choiceInNumber) {
     else {
         createChoiceParagraph.textContent = string + choiceText[2];
     }
+    classNameCounter++;
 }
 
 function createVisualResault(playersChoice, compChoice) {
     const createResualtParagraph = document.createElement('p');
     resualtTextDiv.appendChild(createResualtParagraph);
+    createResualtParagraph.className = "resualtPara";
     if (playersChoice === compChoice){
         playerScore++;
         computerScore++;
@@ -120,14 +139,19 @@ function createVisualResault(playersChoice, compChoice) {
 
 //compare score
 function compareScore() {
+    let createFinalResualtPara = document.createElement('p');
+
+    resualtTextDiv.appendChild(createFinalResualtPara);
+
     if (playerScore > computerScore) {
-        console.log("You win the game!")
+        createFinalResualtPara.textContent = "YOU ARE THE WINNER!"
     }
     if (playerScore < computerScore) {
-        console.log("You loose the game!")
+        createFinalResualtPara.textContent = "YOU ARE THE LOSER!"
     }
     if (playerScore == computerScore) {
-        console.log("The game is draw!")
+        createFinalResualtPara.textContent = "THE GAME IS DRAW"
     }
+
 
 }
